@@ -7,7 +7,7 @@ displayRegister MACRO corX,corY,string, sizeOfString,color
    ;; string--> the string I want to type it
    ;;color-->to select the color of the printed word or byte
 
-  MOV DS,AX 
+
   MOV SI, OFFSET string
 	MOV DH,corY
 	MOV DL,corX
