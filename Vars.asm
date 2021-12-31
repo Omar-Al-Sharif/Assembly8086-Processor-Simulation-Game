@@ -27,4 +27,8 @@ player2Score db ?
 
 instruction db 30,?, 30 dup('$')
 
+;Booleans:
 
+hasError db 0h
+hasBrackets db 0h
+isNum db 0h
