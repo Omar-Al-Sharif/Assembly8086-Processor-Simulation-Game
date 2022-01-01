@@ -4,10 +4,11 @@
 operation     DB         'MOV AX,BX','$'
 instruction   DB         5 DUP('$')
 operands      DB         20 dup('$')
-operand1     DB          2 DUP('$')
-operand2     DB          2 DUP('$') 
+operand1     DB          5 DUP('$')
+operand2     DB          5 DUP('$') 
 sizeOfInstruction  DW      ? 
-
+sizeOfOperand1     DW      ?
+sizeOfOperand2     DW      ?
 
 
 
@@ -48,7 +49,9 @@ instruction_seperate:                   ;This loop is responsible for the copy t
 Prepare_operand_seperation: 
               MOV DI,OFFSET operands
               INC SI
-   label1:    CMP [SI],24H              ;24h= ASCII code of $
+               
+   label1:  
+              CMP [SI],24H              ;24h= ASCII code of $
               JNE operand_seperation
               JE prepare_seperation_first_operand
 
@@ -62,27 +65,44 @@ Operand_seperation:
 prepare_seperation_first_operand:   ;this loop is to seperate the operands into operand1 and operand2
                MOV SI,OFFSET operands
                MOV DI,OFFSET OPERAND1
-   label2:     CMP [SI]-1,','
-               JNz seperate_first_operand
-               Jz prepare_seperation_second_operand
+               MOV BP,SI
+               MOV sizeOfOperand1,SI
+   
+   label2:    CMP [SI],','
+              JNZ seperate_first_operand
+              
+              SUB SI,BP                 ;from the beginning of this line to the next JMP is shuffling between registers and variables to the size of the instruction
+              MOV sizeOfOperand1,SI
+              MOV SI,BP  
+              ADD SI,sizeOfOperand1
+              JMP prepare_seperation_second_operand
 
 seperate_first_operand: 
-              MOV AX,[SI]   
-              MOV [DI],AX
+              MOV AL,[SI]   
+              MOV [DI],AL
               INC DI
               INC SI     
               JMP label2  
                                  
                                  
 prepare_seperation_second_operand: 
-               MOV DI,OFFSET OPERAND2
+               INC SI
+               MOV DI,OFFSET OPERAND2 
+               MOV BP,SI
+               MOV sizeOfOperand2,SI
+               
    label3:     CMP [SI],'$'
                JNE seperate_second_operand
+               
+               SUB SI,BP                 ;from the beginning of this line to the next JMP is shuffling between registers and variables to the size of the instruction
+               MOV sizeOfOperand2,SI
+               MOV SI,BP  
+               ADD SI,sizeOfOperand2 
                JMP FINISHED_SEPERATION
 
 seperate_second_operand:
-              MOV AX,[SI]   
-              MOV [DI],AX
+              MOV AL,[SI]   
+              MOV [DI],AL
               INC DI
               INC SI     
               JMP label3           
@@ -97,7 +117,4 @@ FINISHED_SEPERATION:  ;now you have the instruction in instruction variable, als
                    
 
 MAIN ENDP 
-END MAIN 
-
-
-
+END MAIN
