@@ -23,13 +23,13 @@ isChar db 0h
 Counter db ?
 validAddressing db 0h
 
-player1Name db 11,?, 11 dup('$')
+namePlayer1 db 11,?, 11 dup('$')
 
-player2Name db 11,?, 11 dup('$')
+namePlayer2 db 11,?, 11 dup('$')
 
-player1Score db ?
+scorePlayer1 db ?
 
-player2Score db ?
+scorePlayer2 db ?
 
 instruction db 30,?, 30 dup('$')
 
