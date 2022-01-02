@@ -15,7 +15,8 @@
 	arrowL dw 0ch ;length
 	fireX dw 9ah
 	fireY dw 9ah
-	fireSize dw 04h
+	;fire dw 9ah
+	;fireSize dw 04h
 	ballSpeed equ 05h ;X velocity of the ball
 .code
 
@@ -26,7 +27,8 @@
 		mov ah,00h
 		mov al,13h
 		int 10h
-	
+		
+		;call clearScreen
 		;mov ah,0bh
 		;mov bh,00h
 		;mov bl,00h
@@ -59,6 +61,7 @@
 		ret
 
 	main endp
+	
 
 drawBall proc near
 
@@ -166,18 +169,18 @@ drawFire proc near
 		mov bh,00h
 		int 10h
 		
-		inc cx    ;horiz
-		mov ax,cx
-		sub ax,fireX
-		cmp ax,fireSize
-		jng drawFire1
+		;inc cx    ;horiz
+		;mov ax,cx
+		;sub ax,fireX
+		;cmp ax,fireSize
+		;jng drawFire1
 		
-		mov cx,fireX  ;cx goes back to initial column
-		inc dx
-		mov ax,dx
-		sub ax,fireY   ;vertical
-		cmp ax,fireSize
-		jng drawFire1
+		;mov cx,fireX  ;cx goes back to initial column
+		;inc dx
+		;mov ax,dx
+		;sub ax,fireY   ;vertical
+		;cmp ax,fireSize
+		;jng drawFire1
 		
 	ret	
 
@@ -226,17 +229,26 @@ throw proc near
 		mov ah,00h			;check which key is pressed (al -> ascii char)
 		int 16h
 		
-		cmp al,57h
-		je up
-		
-		cmp al,77h
+		cmp al,20h
 		je up
 		jmp noMotion2
 		
 		up:
-		inc fireY
-		cmp fireY,0c8h
-		je noMotion2
+			
+			mov  ah, 2ch
+			int  21h
+			
+			cmp dl,time
+			je noMotion2
+			;test1:
+			
+			mov time,dl
+			
+			
+			call clearScreen
+			inc fireY
+			cmp fireY,0c8h
+			je noMotion2
 		
 		noMotion2:
 	ret
@@ -246,7 +258,7 @@ throw endp
 
 clearScreen proc near
 
-	mov ah,00h
+		mov ah,00h
 		mov al,13h
 		int 10h
 		
