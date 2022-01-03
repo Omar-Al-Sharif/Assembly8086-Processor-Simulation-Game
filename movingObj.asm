@@ -25,7 +25,7 @@
 		mov ds,ax
 		
 		mov ah,00h
-		mov al,13h
+		mov al,13h                                               	
 		int 10h
 		
 		;call clearScreen
@@ -45,23 +45,24 @@
 			;inc ballX
 			
 			call clearScreen
-			
+		
 			inc ballX
 			call drawBall
 			
+			move1:
 			;call moveArrow
 			call arrow
 			call drawFire
 			call moveArrow
 			call moveFire
-			call throw
+			;call throw
 
 			;call clearScreen
 			jmp move
 		ret
 
 	main endp
-	
+		
 
 drawBall proc near
 
@@ -133,16 +134,19 @@ moveArrow proc near
 		mov ah,00h			;check which key is pressed (al -> ascii char)
 		int 16h
 		
-		cmp al,61h	;if a or A move left
-		je left
-		cmp al,41h
-		je left
-		
+		;cmp al,64h
+
+		;cmp al,61h	;if a or A move left
+		;je left
+		;cmp al,41h
+		;je left
+		;cmp al,44h
 		; if d or D move right
-		cmp al,44h
+		cmp ah,4dh
 		je right
-		cmp al,64h
-		je right
+		
+		cmp ah,4bh
+		je left
 		jmp noMotion
 		
 		right:
@@ -151,7 +155,7 @@ moveArrow proc near
 		
 		left:
 			dec arrowX
-		ret
+		
 		
 		noMotion:
 		
@@ -195,16 +199,13 @@ moveFire proc near
 		mov ah,00h			;check which key is pressed (al -> ascii char)
 		int 16h
 		
-		cmp al,61h	;if a or A move left
-		je left1
-		cmp al,41h
+		cmp ah,4bh	;if <- to move left
 		je left1
 		
-		; if d or D move right
-		cmp al,44h
+		; if -> move right
+		cmp ah,4dh
 		je right1
-		cmp al,64h
-		je right1
+	
 		jmp noMotion1
 		
 		right1:
@@ -213,7 +214,7 @@ moveFire proc near
 		
 		left1:
 			dec fireX
-		ret
+	
 		
 		noMotion1:
 		
@@ -221,17 +222,17 @@ moveFire proc near
 moveFire endp
 
 throw proc near 
-
-		mov ah,01h			;check key press
-		int 16h 
-		je noMotion2
+											
+		;mov ah,01h			;check key press
+		;int 16h 
+		;je noMotion2
 		
-		mov ah,00h			;check which key is pressed (al -> ascii char)
-		int 16h
+		;mov ah,00h			;check which key is pressed (al -> ascii char)
+		;int 16h
 		
-		cmp al,20h
-		je up
-		jmp noMotion2
+		;cmp al,20h
+		;je up
+		;jmp noMotion2
 		
 		up:
 			
@@ -245,10 +246,11 @@ throw proc near
 			mov time,dl
 			
 			
-			call clearScreen
-			inc fireY
+			;call clearScreen
+			dec fireY
 			cmp fireY,0c8h
-			je noMotion2
+			jne up
+			jmp noMotion2
 		
 		noMotion2:
 	ret
