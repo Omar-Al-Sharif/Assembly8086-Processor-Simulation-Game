@@ -38,7 +38,7 @@ Players write assembly commands in the game that are executed on the opponent's 
 14. If any player's points reach zero s/he loses.
 
 15. Flying objects appear randomly at both screens at the same time. Each player tries to shoot it using a gun. Based on the object color it gives the players a certain number of points i.e. green object gives the player one point, blue object gives the player two points … etc. The gun is moved using arrows and shooting using a space bar. Colored circles with a number inside it determines the numbers of hit flying objects.
-16. For the second level, all rules of the first level are applied in addition to the following rules
+16. For the second level, all rules of the first level are applied in addition to the following rules:
 - The forbidden character is hidden. Any command including the forbidden character will not be executed. Each player should deduce the forbidden character through non executed commands.
 - For each command, each player is able to decide whether to execute it on his/her processor or the opponent processor.
 - Each player should be able to put initial values for any register at the beginning of the level.
@@ -47,11 +47,12 @@ Players write assembly commands in the game that are executed on the opponent's 
 
 ## Features
 - Fully functional processor simulator with support for common instructions, addressing modes, and common syntax errors detection.
-- Memory viewer that allows players to examine the contents of memory and registers at any point during execution
+- Memory viewer that allows players to examine the contents of memory and registers at any point during execution.
 - Chat module that allows the two players to chat with each other during the game 
 
-## Development
-This game was developed using assembly x86 language and a custom-built processor simulator. The source code for the game is available on for those who want to contribute or modify the game.
 
 ## Conclusion
-The Processor Simulator Game is a valuable tool for anyone learning assembly programming or wanting to deepen their understanding of processor behavior. With its intuitive interface, powerful features, this game is the perfect way to gain hands-on experience with assembly programming in a fun and engaging way!
+The Assembly 8086 Processor Simulator Game is a valuable tool for anyone learning assembly programming or wanting to deepen their understanding of processor behavior. With its intuitive interface, powerful features, this game is the perfect way to gain hands-on experience with assembly programming in a fun and engaging way!
+
+## Development 
+This game was developed using assembly x86 language and a custom-built processor simulator. The source code for the game is available on for those who want to contribute or modify the game!
