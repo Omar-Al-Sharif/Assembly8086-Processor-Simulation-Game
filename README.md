@@ -1,12 +1,12 @@
-# Assembly 8086 Processor Simulator Game
+# 💻 Assembly 8086 Processor Simulator Game
 This game is an assembly simulator that allows two players connected through a serial network to simulate the behavior of 8086 processor. It is intended to be used as a tool for learning, practicing, and testing assembly programming skills.
 
-## How to Play
+## 🤔 How to Play
 Players write assembly commands in the game that are executed on the opponent's simulated 8086 processor. The player can then observe the state of the processor's registers and memory after each instruction is executed. The final target for each player is to put certain value in one of the opponent registers. Each player should prevent the opponent from reaching the required value using assembly commands and special types of power-ups. This allows the player to gain a deeper understanding of the inner workings of a processor and how assembly instructions affect its behavior.
 
 ![Alt text](screenshot.png)
 
-## Game Flow Scenario
+## 📝 Game Flow Scenario
 1. Assuming the two players are Ahmed and Ali. Ahmed initiated the game.
 2. Initial points screen appears asking both players to choose the initial points.
 3. Ahmed choses the initial point to be 70 and Ali chooses it to be 60. Initial points for both players start at 60 because it is the lower number.
@@ -45,14 +45,14 @@ Players write assembly commands in the game that are executed on the opponent's 
 - An extra power up is introduced, letting each player be able to change the target value only once to any value other than values currently existing in any register for the two players.
 
 
-## Features
+## 🌟 Features
 - Fully functional processor simulator with support for common instructions, addressing modes, and common syntax errors detection.
 - Memory viewer that allows players to examine the contents of memory and registers at any point during execution.
 - Chat module that allows the two players to chat with each other during the game 
 
 
-## Conclusion
+## 💬 Conclusion
 The Assembly 8086 Processor Simulator Game is a valuable tool for anyone learning assembly programming or wanting to deepen their understanding of processor behavior. With its intuitive interface, powerful features, this game is the perfect way to gain hands-on experience with assembly programming in a fun and engaging way!
 
-## Development 
+## 🤝 Development 
 This game was developed using assembly x86 language and a custom-built processor simulator. The source code for the game is available on for those who want to contribute or modify the game!
